@@ -9,7 +9,7 @@
     >
       <div class="respondent__select">
         <h5>Условие {{ index + 1 }}</h5>
-        <!-- <v-select
+        <v-select
             class="select"
             :options="options"
             :reduce="(option) => option.value"
@@ -17,8 +17,8 @@
             v-model="selected"
             style=" background: white;"
           >
-          </v-select> -->
-          <respondent-conditions :prop="item.id" />
+          </v-select>
+          <!-- <component :prop="item.id" :is="this.cmp" /> -->
       </div>
 
       <div class="respondent__delete">
@@ -42,13 +42,25 @@
 
 <script>
 import { mapState, mapMutations, mapGetters } from 'vuex'
+import ageFields from '@/components/respondent-cmps/age-fields.vue'
+import CardStatus from '@/components/respondent-cmps/card-status.vue'
+import CardType from '@/components/respondent-cmps/card-type.vue'
 export default {
+  components: { ageFields, CardStatus, CardType },
   data() {
     return {
+            options: [
+        { value: 'age', title: 'Возраст респондента' },
+        { value: 'card-status', title: 'Статус карты лояльности' },
+        { value: 'card-type', title: 'Тип карты лояльности' },
+      ],
+      
+      selected: 'Выберите',
       HugeObject: [],
       conditions: [],
       id: '',
       condType: 'age',
+      cmp: '',
     }
   },
   methods: {
@@ -56,7 +68,7 @@ export default {
 
     addNewCond() {
       this.id = Date.now()
-      let newCond = { id: this.id, condType: this.condType }
+      let newCond = { id: this.id, data: this.condType }
       this.pushCondition(newCond)
     },
 
@@ -67,5 +79,13 @@ export default {
   computed: {
     ...mapGetters(['formLength']),
   },
+  watch: {
+  // selected(newVal) {
+  //   this.$store.commit('ChangeType', {id: this.prop, condType: newVal} )
+  //   if (newVal == 'card-status') {this.cmp = 'CardStatus'}
+  //   if (newVal == 'card-type') {this.cmp = 'CardType'}
+  //   if (newVal == 'age') {this.cmp = 'ageFields'}
+  // }
+}
 }
 </script>

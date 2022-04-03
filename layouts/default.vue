@@ -1,14 +1,12 @@
 <template>
-  <div class="wrapper"> 
-       <side-bar />
-    
+  <div class="wrapper">
+    <side-bar />
 
     <div class="main">
-      <div class="container"> 
+      <div class="container">
         <Header />
-      <Nuxt />
+        <Nuxt />
       </div>
-      
     </div>
   </div>
 </template>

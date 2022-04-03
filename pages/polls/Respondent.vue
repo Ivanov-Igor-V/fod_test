@@ -4,22 +4,10 @@
     <div v-if="!this.formLength" class="respondent__condition">Нет условий</div>
     <div
       class="respondent__condition"
-      v-for="(item, index) in this.$store.state.form"
+      v-for="(item, index) in this.conditions"
       :key="item.id"
     >
-      <div class="respondent__select">
-        <h5>Условие {{ index + 1 }}</h5>
-        <!-- <v-select
-            class="select"
-            :options="options"
-            :reduce="(option) => option.value"
-            label="title"
-            v-model="selected"
-            style=" background: white;"
-          >
-          </v-select> -->
-          <respondent-conditions :prop="item.id" />
-      </div>
+      <respondent-conditions :id="item.id" :index="index" />
 
       <div class="respondent__delete">
         <button class="btn" @click="deleteCond(item)">Удалить условие</button>
@@ -33,8 +21,8 @@
         </button>
       </div>
       <div class="respondent__btns">
-        <button class="btn">Протестировать опрос</button>
-        <button class="btn">Далее</button>
+        <button class="btn" @click="TEST">Протестировать опрос</button>
+        <button class="btn" @click="POST">Далее</button>
       </div>
     </div>
   </div>
@@ -45,8 +33,6 @@ import { mapState, mapMutations, mapGetters } from 'vuex'
 export default {
   data() {
     return {
-      HugeObject: [],
-      conditions: [],
       id: '',
       condType: 'age',
     }
@@ -63,9 +49,18 @@ export default {
     deleteCond(item) {
       this.deleteCondition(item)
     },
+
+    POST() {
+      console.log('какой-то запрос на сервер')
+    },
+
+    TEST() {
+      console.log('тут какая-то валидация, может быть')
+    },
   },
   computed: {
     ...mapGetters(['formLength']),
+    ...mapState(['conditions']),
   },
 }
 </script>

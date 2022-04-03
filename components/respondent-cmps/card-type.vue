@@ -20,7 +20,7 @@
 
 <script>
 export default {
-  props: ['id', 'index'],
+  props: { id: Number, index: Number },
   data() {
     return {
       data: [{ type: 'Выберите статус карты' }],

@@ -10,7 +10,7 @@
           class="range-input"
           type="number"
           name=""
-          id=""
+          min="1"
           placeholder="Нижняя граница"
           v-model.lazy="numOfRanges[i].start"
         />
@@ -21,6 +21,7 @@
           type="nember"
           name=""
           id=""
+          min="1"
           placeholder="Верхняя граница"
           v-model.lazy="numOfRanges[i].end"
         />
@@ -34,8 +35,9 @@
 </template>
 
 <script>
+// import { required, maxLength } from 'vuelidate/lib/validators'
 export default {
-  props: ['id'],
+  props: { id: Number },
   data() {
     return {
       numOfRanges: [{ start: '', end: '' }],
@@ -63,7 +65,6 @@ export default {
       deep: true,
     },
   },
-  computed: {},
 }
 </script>
 

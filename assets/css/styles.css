@@ -230,6 +230,9 @@ body {
 .btn:hover {
     background-color: #EAE8EC
 }
+.btn:active {
+    background-color: #7C7A85
+}
 
 .select {
     min-width: 300px;

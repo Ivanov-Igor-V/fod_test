@@ -29,7 +29,7 @@ import CardType from './respondent-cmps/card-type.vue'
 export default {
   components: { AgeFields, CardStatus, CardType },
   name: 'respondent-conditions',
-  props: ['id', 'index'],
+  props: { id: Number, index: Number },
   data() {
     return {
       options: [
@@ -39,9 +39,7 @@ export default {
       ],
 
       selected: 'Выберите',
-      selectedCard: 'Выберите тип карты',
       cardActivity: true,
-      asas: 'choose',
       cmp: '',
     }
   },
